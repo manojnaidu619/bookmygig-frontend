@@ -7,8 +7,9 @@ const CreatorModal = (props) => {
 
     useEffect(() => {
         const todaysDate = new Date().toISOString().split("T")[0]
-        document.querySelector("#date").min = todaysDate
-    })
+        const dateField = document.querySelector("#date")
+        if (dateField) dateField.min = todaysDate 
+    }, [])
 
     const ModalHandler = (e) => {
         e.preventDefault()
@@ -91,20 +92,16 @@ const CreatorModal = (props) => {
                 required/>
                 
         </div>
-            <button type="submit" className="btn btn-primary">Submit</button>
+            <button type="submit" className="btn btn-success">Submit</button>
             &nbsp; &nbsp; &nbsp;
-            <button
-                className="btn btn-secondary"
-                onClick={() => props.modal(false)}>
-                Cancel
-            </button>
         </form>
     } else if (!form && props.reqStatus) {
         data = 
         <div>
-            <h2>
-                Thanks for registering as a Creator, here is your streaming id <strong>{JSON.stringify(formData["user_id"])}</strong>
-            </h2>
+            <h2>Thanks for registering as a Creator! </h2>
+            <h3>OBS service : <strong>Custom</strong></h3>
+            <h3>OBS server : <strong>rtmp://localhost/live</strong></h3>
+            <h3>Here is your OBS streaming id : <strong>{JSON.stringify(formData["user_id"])}</strong></h3>
         </div>
     }
     else {
@@ -117,6 +114,12 @@ const CreatorModal = (props) => {
     return (
         <div className="creator-modal" style={styles}>
             {data}
+            <br />
+            <button
+                className="btn btn-secondary"
+                onClick={() => props.modal(false)}>
+                Cancel
+            </button>
         </div>
     )
 }
@@ -128,7 +131,8 @@ const styles = {
     transform: 'translate(-50%, -50%)',
     zIndex: 2,
     backgroundColor: '#fff',
-    width: '80%'
+    width: '80%',
+    height: '600px'
 }
 
 export default CreatorModal
