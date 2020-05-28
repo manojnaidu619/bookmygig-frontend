@@ -27,7 +27,7 @@ const CreatorModal = (props) => {
 
     if (form) {
         data = 
-        <form onSubmit={ModalHandler}>
+        <form onSubmit={ModalHandler} autocomplete="off">
         <div className="form-group">
             <label htmlFor="name">Creator Name</label>
             <input
@@ -92,16 +92,16 @@ const CreatorModal = (props) => {
                 required/>
                 
         </div>
-            <button type="submit" className="btn btn-success">Submit</button>
+            <button type="submit" className="btn btn-success">Pay $99 and Submit</button>
             &nbsp; &nbsp; &nbsp;
         </form>
     } else if (!form && props.reqStatus) {
         data = 
         <div>
-            <h2>Thanks for registering as a Creator! </h2>
+            <h2>Thanks for registering as a Creator!, here are your credentials... </h2>
             <h3>OBS service : <strong>Custom</strong></h3>
             <h3>OBS server : <strong>rtmp://localhost/live</strong></h3>
-            <h3>Here is your OBS streaming id : <strong>{JSON.stringify(formData["user_id"])}</strong></h3>
+            <h3>OBS streaming id : <strong>{JSON.stringify(formData["user_id"])}</strong></h3>
         </div>
     }
     else {

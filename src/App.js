@@ -38,7 +38,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="App container">
+      <div className="App container-fluid">
       {modal}
         <Switch>
           <Route path='/' exact render={props =>
