@@ -1,4 +1,4 @@
-import React, {useState, Fragment} from 'react';
+import React, {useState, Fragment, useEffect} from 'react';
 import CreatorModal from './components/CreatorModal'
 import Header from './components/Header'
 import CardsShowcase from './components/CardsShowcase/CardsShowcase'
@@ -9,13 +9,21 @@ import Gig from './components/GigStream/Gig'
 
 function App() {
 
-  const [creatorData, setCreatorData] = useState()
+  //const [creatorData, setCreatorData] = useState()
   const [reqStatus, setReqStatus] = useState(false)
   const [modalStatus, setModalStatus] = useState(false)
   let modal = null
 
+  useEffect(() => {
+    let videoDiv = document.querySelector("video")
+    videoDiv.style.display = "none"
+    if (window.location.pathname.startsWith("/gig/")) {
+      videoDiv.style.display = "block"
+    } 
+  })
+
   const CreatorModalSubmitHandler = data => {
-    setCreatorData(data)
+    //setCreatorData(data)
     PostData(data).then(response => setReqStatus(true)).catch(err => console.log(err))
   }
 

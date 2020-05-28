@@ -28,7 +28,7 @@ const CardsShowcase = () => {
     }
 
     return (
-        <div className="container" style={styles.cardsShowcase}>
+        <div className="container cards-showcase" style={styles.cardsShowcase}>
             {cards}
         </div>
     )

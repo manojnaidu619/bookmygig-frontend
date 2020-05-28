@@ -1,9 +1,14 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 const CreatorModal = (props) => {
 
     const [formData, setFormData] = useState({})
     const [form, setForm] = useState(true)
+
+    useEffect(() => {
+        const todaysDate = new Date().toISOString().split("T")[0]
+        document.querySelector("#date").min = todaysDate
+    })
 
     const ModalHandler = (e) => {
         e.preventDefault()
@@ -58,7 +63,7 @@ const CreatorModal = (props) => {
             </select>
         </div>
         <div className="form-group">
-            <label htmlFor="price">Price</label>
+            <label htmlFor="price">Price(in USD)</label>
             <input
                 type="number"
                 className="form-control"
@@ -86,7 +91,13 @@ const CreatorModal = (props) => {
                 required/>
                 
         </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
+            <button type="submit" className="btn btn-primary">Submit</button>
+            &nbsp; &nbsp; &nbsp;
+            <button
+                className="btn btn-secondary"
+                onClick={() => props.modal(false)}>
+                Cancel
+            </button>
         </form>
     } else if (!form && props.reqStatus) {
         data = 
@@ -106,7 +117,6 @@ const CreatorModal = (props) => {
     return (
         <div className="creator-modal" style={styles}>
             {data}
-            <h3><span onClick={() => props.modal(false)}>CLOSE</span></h3>
         </div>
     )
 }

@@ -29,6 +29,29 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <style>
+      .live-stream-div{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .stream-text{
+        display: block;
+        text-align: center;
+        position: absolute;
+        left: 0%;
+        right: 0%;
+        top: 40%;
+        z-index: -1;
+      }
+      #videoElement{
+        display: block;
+        position: absolute;
+        top: 20%;
+        max-width: 900px;
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -43,8 +66,21 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <video id="videoElement"></video>
-    <script type="text/javascript">
+    <div class="live-stream-div">
+      <video id="videoElement"></video>
+    </div>
+    <div class="stream-text">
+      <h1>Stream is yet to be started by the host!</h1>
+    </div>
+    <script>
+
+      const sText = document.querySelector('.stream-text')
+      sText.style.display = "none"
+
+      if(window.location.pathname.startsWith("/gig/")){
+        sText.style.display = "block"
+      }
+
       function loadVideo(gigId){
         if (flvjs.isSupported()) {
           var videoElement = document.getElementById('videoElement');
@@ -52,9 +88,9 @@
               type: 'flv',
               url: `http://localhost:8000/live/${gigId}.flv`
           });
-          flvPlayer.attachMediaElement(videoElement);
-          flvPlayer.load();
-          flvPlayer.play();
+          flvPlayer.attachMediaElement(videoElement)
+          flvPlayer.load()
+          flvPlayer.play()
         }
       }
     </script>

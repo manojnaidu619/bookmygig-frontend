@@ -1,5 +1,4 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 
 const Card = (props) => {
     const link = `/gig/${props.user_id}`
@@ -9,9 +8,9 @@ const Card = (props) => {
                 <h5 className="card-title">{props.gigTitle}</h5>
                 <small>{props.category}</small>
                 <p className="card-text">Host : {props.name}</p>
-                <h4>&#8377; {props.price}</h4>
+                <h4>$ {props.price}</h4>
                 <p>On: {props.date}, {props.time}</p>
-                <Link to={link} params={{id: props.user_id}} className="btn btn-success">View</Link>
+                <a href={link} className="btn btn-success">View</a>
             </div>
         </div>
     )

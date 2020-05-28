@@ -1,31 +1,47 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import ReactPlayer from 'react-player'
-
 
 const Gig = (props) => {
     const [gigData, setGigData] = useState()
-    let streamUrl = null
+    let data = null
 
     const gigId = parseInt(props.match.params.id)
     const getUrl = `http://localhost:5000/get-gig/${gigId}`
 
+    const vidText = () => {
+        var streamDiv = document.querySelector("#videoElement")
+        var vidH = streamDiv.clientHeight
+        var vidW = streamDiv.clientWidth
+        if(vidH === 150 || vidW === 300){
+          document.querySelector('.live-stream-div')    
+        }
+    }
+
     useEffect(() => {
-        window["loadVideo"](gigId)
-        axios.get(getUrl).then(response => setGigData(response.data))
+        window.addEventListener('load', () => {
+            window["loadVideo"](gigId)
+            vidText()
+            axios.get(getUrl).then(response => setGigData(response.data))
+        })
     }, [])
 
     if (gigData) {
-        streamUrl = `http://localhost:8000/live/${gigId}.flv`
-        console.log(streamUrl)
+        data =
+            <div>
+                <h1>{gigData.gig_title}</h1>
+                <h6>By <strong>{gigData.name}</strong></h6>
+            </div>
     }
 
     return (
-        <div>
-            <h1>Hello from Gig</h1>
-            {JSON.stringify(gigData)}
+        <div className="container" style={{marginTop: 25}}>
+            {data}
         </div>
     )
 }
 
 export default Gig
+
+// 300x150
+
+// 1152x720
