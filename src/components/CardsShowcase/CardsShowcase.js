@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState} from 'react'
 import Card from './Card'
 import axios from 'axios'
 
@@ -31,6 +31,7 @@ const CardsShowcase = () => {
 
     return (
         <div className="container cards-showcase" style={styles.cardsShowcase}>
+        <h2 style={{ color: "#fff", fontStyle: "italic" }}>Platform for creators to present their <strike>content</strike> talent online</h2>
             {cards}
         </div>
     )
