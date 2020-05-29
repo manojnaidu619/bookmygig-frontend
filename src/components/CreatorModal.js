@@ -27,7 +27,7 @@ const CreatorModal = (props) => {
 
     if (form) {
         data = 
-        <form onSubmit={ModalHandler} autocomplete="off">
+        <form onSubmit={ModalHandler} autocomplete="off" style={formStyle}>
         <h3 style={{textAlign: 'center'}}>List your next gig here...</h3>   
         <div className="form-group">
             <label htmlFor="name">Creator Name</label>
@@ -115,6 +115,11 @@ const CreatorModal = (props) => {
         </div>
             <button type="submit" className="btn btn-success">Pay $99 and Submit</button>
             &nbsp; &nbsp; &nbsp;
+            <button
+                className="btn btn-secondary"
+                onClick={() => props.modal(false)}>
+                Cancel
+            </button>
         </form>
     } else if (!form && props.reqStatus) {
         data = 
@@ -135,12 +140,6 @@ const CreatorModal = (props) => {
     return (
         <div className="creator-modal" style={styles}>
             {data}
-            <br />
-            <button
-                className="btn btn-secondary"
-                onClick={() => props.modal(false)}>
-                Cancel
-            </button>
         </div>
     )
 }
@@ -153,7 +152,12 @@ const styles = {
     zIndex: 2,
     backgroundColor: '#fff',
     width: '90%',
-    height: '93vh'
+    height: '100%'
+}
+
+const formStyle = {
+    backgroundColor: '#fff',
+    padding: '30px'
 }
 
 export default CreatorModal
