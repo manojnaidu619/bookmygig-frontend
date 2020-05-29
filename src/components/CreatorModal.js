@@ -28,6 +28,7 @@ const CreatorModal = (props) => {
     if (form) {
         data = 
         <form onSubmit={ModalHandler} autocomplete="off">
+        <h3 style={{textAlign: 'center'}}>List your next gig here...</h3>   
         <div className="form-group">
             <label htmlFor="name">Creator Name</label>
             <input
@@ -131,8 +132,8 @@ const styles = {
     transform: 'translate(-50%, -50%)',
     zIndex: 2,
     backgroundColor: '#fff',
-    width: '80%',
-    height: '600px'
+    width: '90%',
+    height: '93vh'
 }
 
 export default CreatorModal

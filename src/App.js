@@ -9,21 +9,20 @@ import Gig from './components/GigStream/Gig'
 
 function App() {
 
-  //const [creatorData, setCreatorData] = useState()
   const [reqStatus, setReqStatus] = useState(false)
   const [modalStatus, setModalStatus] = useState(false)
   let modal = null
 
   useEffect(() => {
-    let videoDiv = document.querySelector("video")
-    videoDiv.style.display = "none"
+    window.addEventListener('load', () => {
+      document.querySelector("video").style.display = "none"
+    })
     if (window.location.pathname.startsWith("/gig/")) {
-      videoDiv.style.display = "block"
+      document.querySelector("video").style.display = "block"
     } 
   })
 
   const CreatorModalSubmitHandler = data => {
-    //setCreatorData(data)
     PostData(data).then(response => setReqStatus(true)).catch(err => console.log(err))
   }
 
@@ -39,7 +38,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App container-fluid">
-      {modal}
+        {modal}
         <Switch>
           <Route path='/' exact render={props =>
             <Fragment>

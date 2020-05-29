@@ -41,7 +41,3 @@ const Gig = (props) => {
 }
 
 export default Gig
-
-// 300x150
-
-// 1152x720
