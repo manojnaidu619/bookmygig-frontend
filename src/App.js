@@ -3,9 +3,8 @@ import CreatorModal from './components/CreatorModal'
 import Header from './components/Header'
 import CardsShowcase from './components/CardsShowcase/CardsShowcase'
 import PostData from './components/Axios/PostData'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-
 import Gig from './components/GigStream/Gig'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 function App() {
 
@@ -16,10 +15,10 @@ function App() {
   useEffect(() => {
     window.addEventListener('load', () => {
       document.querySelector("video").style.display = "none"
+      if (window.location.pathname.startsWith("/gig/")) {
+        document.querySelector("video").style.display = "block"
+      } 
     })
-    if (window.location.pathname.startsWith("/gig/")) {
-      document.querySelector("video").style.display = "block"
-    } 
   })
 
   const CreatorModalSubmitHandler = data => {

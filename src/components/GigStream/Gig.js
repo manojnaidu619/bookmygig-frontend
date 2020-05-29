@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, Fragment } from 'react'
 import axios from 'axios'
+import ChatBox from './ChatBox'
 
 const Gig = (props) => {
     const [gigData, setGigData] = useState()
@@ -27,17 +28,20 @@ const Gig = (props) => {
 
     if (gigData) {
         data =
-            <div>
-                <div className="alert alert-success" role="alert" style={{textAlign: 'center'}}>
-                    Welcome <strong>{localStorage.getItem("userName")}</strong>
-                    <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+            <Fragment>
+                <div>
+                    <div className="alert alert-success" role="alert" style={{textAlign: 'center'}}>
+                        Welcome <strong>{localStorage.getItem("userName")}</strong>
+                        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <br/>
+                    <h1>{gigData.gig_title}</h1>
+                    <h6>By <strong>{gigData.name}</strong></h6>
                 </div>
-                <br/>
-                <h1>{gigData.gig_title}</h1>
-                <h6>By <strong>{gigData.name}</strong></h6>
-            </div>
+                <ChatBox room={gigId} />
+            </Fragment>
         
     }
 
@@ -47,5 +51,6 @@ const Gig = (props) => {
         </div>
     )
 }
+
 
 export default Gig

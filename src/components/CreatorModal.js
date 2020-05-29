@@ -50,6 +50,16 @@ const CreatorModal = (props) => {
                 required/>
         </div>
         <div className="form-group">
+            <label htmlFor="description">Gig Description</label>
+            <textarea
+                className="form-control"
+                id="description"
+                placeholder="Describe your Gig here..."
+                rows="5"
+                onChange={(e) => setFormData({ ...formData, gig_description: e.target.value })}
+                required/>
+        </div>
+        <div className="form-group">
             <label htmlFor="category">Category</label>
             <select
                 className="form-control"
@@ -84,12 +94,22 @@ const CreatorModal = (props) => {
                 required/>
         </div>
         <div className="form-group">
-            <label htmlFor="time">Time</label>
+            <label htmlFor="timeFrom">Time From</label>
             <input
                 className="form-control"
                 type="time"
-                id="time"
-                onChange={(e) => setFormData({ ...formData, time: e.target.value })}
+                id="timeFrom"
+                onChange={(e) => setFormData({ ...formData, timeFrom: e.target.value })}
+                required/>
+                
+        </div>
+        <div className="form-group">
+            <label htmlFor="timeTo">Time to</label>
+            <input
+                className="form-control"
+                type="time"
+                id="timeTo"
+                onChange={(e) => setFormData({ ...formData, timeTo: e.target.value })}
                 required/>
                 
         </div>

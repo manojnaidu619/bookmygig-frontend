@@ -18,10 +18,12 @@ const CardsShowcase = () => {
                 gigTitle={gig.gig_title}
                 name={gig.name}
                 date={gig.date}
-                time={gig.time}
+                timeFrom={gig.timeFrom}
+                timeTo={gig.timeTo}
                 category={gig.category}
                 price={gig.price}
                 user_id={gig.user_id}
+                gig_description={gig.gig_description}
                 key={gig.user_id}
             />
         })   

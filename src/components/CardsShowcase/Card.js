@@ -4,7 +4,7 @@ const dateFormatter = (date) => {
     const newDate = new Date(date.toString())
     const month = new Intl.DateTimeFormat('en', { month: 'short' }).format(newDate)
     const day = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(newDate)
-    return `${month}-${day}`
+    return `${month} ${day}`
 }
 
 const Card = (props) => {
@@ -22,11 +22,12 @@ const Card = (props) => {
     return (
         <div className="card" style={styles.cardStyle} onClick={() => console.log(props.user_id)}>
             <div className="card-body">
-                <h5 className="card-title">{props.gigTitle}</h5>
-                <small>{props.category}</small>
+                <h2 className="card-title">{props.gigTitle}</h2>
+                <p>category - {props.category}</p>
                 <p className="card-text">Host : {props.name}</p>
+                <p>{props.gig_description}</p>
                 <h4>$ {props.price}</h4>
-                <h6>{dateFormatter(props.date)} at {props.time}</h6>
+                <h6>{dateFormatter(props.date)} ({props.timeFrom} - {props.timeTo} IST)</h6>
                 <br/>
                 <button type="button" style={{width: '100%'}} className="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">
                     Buy Access
