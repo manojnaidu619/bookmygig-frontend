@@ -19,15 +19,18 @@ const ChatBox = (props) => {
 
     const addText = (e) => {
         e.preventDefault()
-        const msg = document.querySelector('#chat-text').value
+        const textBox = document.querySelector('#chat-text')
+        const msg = textBox.value
         if (msg) {
-            socket.emit('chat-text', {room: props.room, msg: msg})
+            socket.emit('chat-text', {room: props.room, msg: msg, user: userName})
         }
+        textBox.value = ""
     }
 
     socket.emit('chat-join', { room: props.room, msg: userName })
     socket.on('add-chat-join', (data) => addLi(data.toUpperCase() + ' Joined now'))  
-    socket.on('add-chat-text', (data) => addLi(`${userName.toUpperCase()} says - ${data}`))
+    socket.on('add-chat-text', ({msg, user}) => addLi(`${user.toUpperCase()} says - ${msg}`))
+    socket.on("chat-disconnected", (data) => addLi(userName + data))
 
 
     return (
@@ -53,13 +56,14 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        height: '250px'
+        height: '350px',
+        position: 'absolute',
+        right: '25px',
+        top: '30%'
     },
     chatDivUl: {
         listStyle: 'none',
-        padding: '0',
-        marginLeft: '5px',
-        marginTop: '5px'
+        padding: '10px'
     },
     chatText: {
         border: '1px solid #ccc',
