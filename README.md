@@ -12,6 +12,8 @@ I see that shows/events were called off, as soon as the pandemic broke out. This
 
 This is a platform where creators perform live online shows (like dance, comedy, plays, and the list goes on...) for live audiences. There is also a chat feature, where the users who are part of the same show can chat in realtime while they are watching it.
 
+[Checkout the demo here](https://youtu.be/dG-Yic-VWQ4)
+
 ## Built using
 
 * [ReactJS](https://reactjs.org/)
@@ -35,6 +37,7 @@ I could successfully able to hook-up all the different parts of the application 
 I picked up a lot in this process, this was the first time having my hands-on Redis, Socket.io and came across terms like RTMP, its uses, and also how to set one up.
 
 ### How to Setup
+> Also need to setup server to get things running. Checkout backend [here](https://github.com/manojnaidu619/bookmygig-backend)
 * Download the repo as zip-file
 * unzip it and `cd` into project folder
 * `npm install`
