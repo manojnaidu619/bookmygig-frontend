@@ -12,8 +12,9 @@ const CardsShowcase = () => {
     }, [])
       
 
-    if (gigs){
+    if (gigs) {
         cards = gigs.map((gig) => {
+            const link = `/gig/${gig.user_id}`
             return <Card
                 gigTitle={gig.gig_title}
                 name={gig.name}
@@ -25,6 +26,7 @@ const CardsShowcase = () => {
                 user_id={gig.user_id}
                 gig_description={gig.gig_description}
                 key={gig.user_id}
+                link={link}
             />
         })   
     }

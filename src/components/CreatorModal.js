@@ -28,7 +28,8 @@ const CreatorModal = (props) => {
     if (form) {
         data = 
         <form onSubmit={ModalHandler} autocomplete="off" style={formStyle}>
-        <h3 style={{textAlign: 'center'}}>List your next gig here...</h3>   
+        <h3 style={{ textAlign: 'center' }}>List your next gig here...</h3> 
+        <span aria-hidden="true" style={modalCloser} onClick={() => props.modal(false)}>&times;</span>    
         <div className="form-group">
             <label htmlFor="name">Creator Name</label>
             <input
@@ -123,7 +124,7 @@ const CreatorModal = (props) => {
         </form>
     } else if (!form && props.reqStatus) {
         data = 
-        <div>
+        <div style={gigSuccess}>
             <h2>Thanks for registering as a Creator!, here are your credentials... </h2>
             <h3>OBS service : <strong>Custom</strong></h3>
             <h3>OBS server : <strong>rtmp://localhost/live</strong></h3>
@@ -160,4 +161,19 @@ const formStyle = {
     padding: '30px'
 }
 
+const gigSuccess = {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+}
+
+const modalCloser = {
+    position: 'absolute',
+    right: '30px',
+    top: '15px',
+    fontSize: '35px',
+    cursor: 'pointer'
+}
 export default CreatorModal
