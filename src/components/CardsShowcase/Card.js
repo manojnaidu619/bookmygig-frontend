@@ -22,7 +22,6 @@ const Card = (props) => {
         <div className="card" style={styles.cardStyle}>
             <div className="card-body">
                 <h2 className="card-title">{props.gigTitle}</h2>
-                <p>category - {props.category}</p>
                 <p className="card-text">Host : {props.name}</p>
                 <p>{props.gig_description}</p>
                 <h4>$ {props.price}</h4>

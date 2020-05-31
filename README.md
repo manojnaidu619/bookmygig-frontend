@@ -21,6 +21,25 @@ This is a platform where creators perform live online shows (like dance, comedy,
 * [Redis](https://redis.io/) as an in-memory database
 * [Node-Media-Server](https://github.com/illuspas/Node-Media-Server) for video streaming
 * [Socket.io](https://socket.io/) for realtime-chat
+
+#### Three main Pillars of the application : 
+
+*  **REDIS** is used to store data, as it is an in-memory database which makes our app incredibly fast and the process of exchanging data back and forth is seamless. Our application uses different blend of [built-in data structures](https://redislabs.com/redis-enterprise/data-structures/) to store and retreive data in an efficient manner.
+
+* **RTMP** provides a bidirectional message multiplex service over a reliable stream transport, such as TCP, intended to carry parallel streams of video, audio, and data messages, with associated timing information, between a pair of communicating peers. More about RTMP could be learned [here](https://en.wikipedia.org/wiki/Real-Time_Messaging_Protocol).
+
+	- When a creator lists a gig, he/she is given a unique streaming ID which is used to identify the creator on the backend and allocate a separate channel, where he could live stream and also the audiences of that particular show are isolated from the rest of the channels/shows.
+	
+	- As soon as the creator hits `start stream` button, the video data is transported to media server, where it encoded to different formats. In our case, we use `flv` format which is a file format used by Adobe Flash Player to store and deliver synchronized audio and video streams over the Internet.
+
+	- Later, on the client side we use a `flvjs plugin` to render the video in realtime. 
+
+ * **REALTIME CHAT** is accomplished using socket.io, which is a library to abstract the [WebSocket](https://en.wikipedia.org/wiki/WebSocket) connections. It enables realtime, bi-directional communication between web clients and servers. 
+	  - When a client types the message and clicks send, it is sent to server and is then broadcasted to all the connected clients in the same room.
+	  
+	  - The messages that gets exchanged within a room is isolated from the outside world.
+
+> Also, we are using Redis [pubsub](https://redis.io/topics/pubsub) indirectly as socket.io internally relies on it to achieve the realtime two-way communication.
  
 ## Challenges I ran into
 
