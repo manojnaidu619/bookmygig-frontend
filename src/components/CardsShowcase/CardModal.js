@@ -5,8 +5,10 @@ const CardModal = () => {
     const [userName, setUserName] = useState(null)
 
     const setName = () => {
-        localStorage.setItem('userName', userName)
-        if (localStorage.getItem("userName") === 'null') {
+        let localName = localStorage.getItem("userName").toString()
+        if (localName.length > 2) {
+            localStorage.setItem('userName', userName)
+        } else {
             localStorage.setItem('userName', 'User')
         }
         document.querySelector('#modal-after-text').textContent = 'Username saved successfully!'
@@ -15,11 +17,17 @@ const CardModal = () => {
         }, 900);
     }
 
+    const modalCloseHandler = () => {
+        if (localStorage.getItem("userName") === null) {
+            localStorage.setItem('userName', 'User')
+        }
+    }
+
     useEffect(() => {
         let btn = document.querySelector('#get-user-name-btn')
-        localStorage.setItem('userName', 'User')
+        let localName = localStorage.getItem("userName")
         setTimeout(() => {
-            if (localStorage.getItem("userName") === 'User') btn.click()
+            if ( localName === 'User' || localName === null) btn.click()
         }, 3000);
     }, [])
 
@@ -31,7 +39,7 @@ const CardModal = () => {
                 <div className="modal-content">
                     <div className="modal-header">
                     <h5 className="modal-title" id="exampleModalLabel">Enter your firstname to continue</h5>
-                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" className="close" onClick={modalCloseHandler} data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" id="close-sign">&times;</span>
                     </button>
                     </div>
@@ -41,7 +49,7 @@ const CardModal = () => {
                             <h5 id="modal-after-text" style={{color: 'green', textAlign: 'center'}}></h5>
                     </div>
                     <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" className="btn btn-secondary" onClick={modalCloseHandler} data-dismiss="modal">Close</button>
                     <button type="button" className="btn btn-primary" onClick={setName}>Save changes</button>
                     </div>
                 </div>

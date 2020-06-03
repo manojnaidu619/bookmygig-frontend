@@ -114,13 +114,23 @@ const CreatorModal = (props) => {
                 required/>
                 
         </div>
-            <button type="submit" className="btn btn-success">Pay $99 and Submit</button>
-            &nbsp; &nbsp; &nbsp;
-            <button
-                className="btn btn-secondary"
-                onClick={() => props.modal(false)}>
-                Cancel
-            </button>
+        <div className="form-group">
+            <label htmlFor="payment-pointer">Payment Pointer</label>
+            <input
+                className="form-control"
+                type="text"
+                id="payment-pointer"
+                onChange={(e) => setFormData({ ...formData, paymentPointer: e.target.value })}
+                required/>
+                
+        </div>
+        <button type="submit" className="btn btn-success">Pay $99 and Submit</button>
+        &nbsp; &nbsp; &nbsp;
+        <button
+            className="btn btn-secondary"
+            onClick={() => props.modal(false)}>
+            Cancel
+        </button>
         </form>
     } else if (!form && props.reqStatus) {
         data = 
