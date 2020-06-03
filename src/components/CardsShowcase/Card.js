@@ -10,11 +10,14 @@ const dateFormatter = (date) => {
 const Card = (props) => {
 
     const [uid, setUid] = useState(null)
+
+    console.log(props)
     
     return (
         <div className="card" style={styles.cardStyle}>
             <div className="card-body">
                 <h2 className="card-title">{props.gigTitle}</h2>
+                <p>Category : {props.category || 'Comedy'}</p>
                 <p className="card-text">Host : {props.name}</p>
                 <p>{props.gig_description}</p>
                 <h4>$ {props.price}</h4>
