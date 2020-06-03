@@ -17,10 +17,11 @@ const CardModal = () => {
 
     useEffect(() => {
         let btn = document.querySelector('#get-user-name-btn')
+        localStorage.setItem('userName', 'User')
         setTimeout(() => {
-            if (localStorage.getItem("userName") === null) btn.click()
+            if (localStorage.getItem("userName") === 'User') btn.click()
         }, 3000);
-    })
+    }, [])
 
     return (
         <div>
@@ -29,7 +30,7 @@ const CardModal = () => {
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
-                    <h5 className="modal-title" id="exampleModalLabel">Enter your Name</h5>
+                    <h5 className="modal-title" id="exampleModalLabel">Enter your firstname to continue</h5>
                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" id="close-sign">&times;</span>
                     </button>
