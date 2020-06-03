@@ -1,5 +1,6 @@
 import React, {useState, Fragment, useEffect} from 'react';
 import CreatorModal from './components/CreatorModal'
+import CardModal from './components/CardsShowcase/CardModal'
 import Header from './components/Header'
 import CardsShowcase from './components/CardsShowcase/CardsShowcase'
 import PostData from './components/Axios/PostData'
@@ -42,7 +43,8 @@ function App() {
           <Route path='/' exact render={props =>
             <Fragment>
               <Header modal={setModalStatus} />
-              <CardsShowcase/>
+              <CardsShowcase />
+              <CardModal/>
             </Fragment>
           } />
           <Route path="/gig/:id" component={Gig} />

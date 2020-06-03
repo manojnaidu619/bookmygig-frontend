@@ -9,8 +9,6 @@ const Gig = (props) => {
     const gigId = parseInt(props.match.params.id)
     const getUrl = `http://localhost:5000/get-gig/${gigId}`
 
-    console.log(gigId)
-
     const vidText = () => {
         var streamDiv = document.querySelector("#videoElement")
         var vidH = streamDiv.clientHeight

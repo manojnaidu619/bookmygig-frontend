@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import CardModal from './CardModal'
 
 const dateFormatter = (date) => {
     const newDate = new Date(date.toString())
@@ -11,13 +10,7 @@ const dateFormatter = (date) => {
 const Card = (props) => {
 
     const [uid, setUid] = useState(null)
-
-    let streamLink = null
-
-    console.log(uid)
-
-    if(uid) streamLink = `/gig/${uid}`
-
+    
     return (
         <div className="card" style={styles.cardStyle}>
             <div className="card-body">
@@ -27,16 +20,14 @@ const Card = (props) => {
                 <h4>$ {props.price}</h4>
                 <h6>{dateFormatter(props.date)} ({props.timeFrom} - {props.timeTo} IST)</h6>
                 <br/>
-                <button type="button"
+                <a  type="button"
                     style={{ width: '100%' }}
                     className="btn btn-success"
-                    data-toggle="modal"
-                    onClick={() => setUid(props.user_id)}
-                    data-target="#exampleModalCenter">
+                    href={`/gig/${props.user_id}`}
+                    >
                     Buy Access
-                </button>
+                </a>
             </div>
-            <CardModal gigTitle={props.gigTitle} price={props.price} link={`/gig/${uid}`}/>
         </div>
         )
 }
