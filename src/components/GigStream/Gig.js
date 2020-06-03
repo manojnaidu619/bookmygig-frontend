@@ -18,6 +18,10 @@ const Gig = (props) => {
         }
     }
 
+    if (gigData) {
+        document.querySelector('meta[name="monetization"]').setAttribute("content", '$coil.xrptipbot.com/this_may_work');
+    }
+
     useEffect(() => {
         window.addEventListener('load', () => {
             window["loadVideo"](gigId)
