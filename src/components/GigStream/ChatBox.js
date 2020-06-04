@@ -6,7 +6,7 @@ const ChatBox = (props) => {
  
     const userName = localStorage.getItem('userName')
 
-    const addLi = (data) => {
+    const addLi = (data, typed) => {
         const ul = document.querySelector('#chat-ul-div')
         const lastUlData = ul.lastChild 
         if ( lastUlData === null || lastUlData.textContent !== data) {
@@ -31,8 +31,8 @@ const ChatBox = (props) => {
     }
 
     socket.emit('chat-join', { room: props.room, msg: userName })
-    socket.on('add-chat-join', (data) => addLi(data.toUpperCase() + ' Joined now'))  
-    socket.on('add-chat-text', ({msg, user}) => addLi(`${user.toUpperCase()} says - ${msg}`))
+    socket.on('add-chat-join', (data) => addLi(data.toUpperCase() + ' Joined now', false))  
+    socket.on('add-chat-text', ({msg, user}) => addLi(`${user.toUpperCase()} says - ${msg}`, true))
     socket.on("chat-disconnected", (data) => addLi(userName + data))
 
 
