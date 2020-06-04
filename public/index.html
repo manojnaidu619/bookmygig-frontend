@@ -121,29 +121,6 @@
               flvPlayer.play()
           }
       }
-
-      // Web monetization part
-
-      if (document.monetization) {
-          document.monetization.addEventListener(
-              "monetizationstop",
-              console.log("Monetization Stop")
-          );
-            document.monetization.addEventListener(
-              "monetizationstart",
-              console.log("Monetization Start")
-          );
-            document.monetization.addEventListener(
-              "monetizationpending",
-              console.log("Monetization Pending")
-          );
-            document.monetization.addEventListener(
-              'monetizationprogress', 
-              console.log("Monetization Progress")
-          );
-      } else {
-          console.log("Monetization not supported")
-      }
     </script>
   </body>
 </html>

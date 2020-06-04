@@ -6,12 +6,31 @@ import CardsShowcase from './components/CardsShowcase/CardsShowcase'
 import PostData from './components/Axios/PostData'
 import Gig from './components/GigStream/Gig'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { useMonetizationState } from 'react-web-monetization'
 
 function App() {
 
   const [reqStatus, setReqStatus] = useState(false)
   const [modalStatus, setModalStatus] = useState(false)
   let modal = null
+
+  const monetization = useMonetizationState()
+
+  const Monetization = () => {
+    if (monetization.state === 'stopped') {
+      console.log("Monetization Stopped")
+    }
+    else if (monetization.state === 'pending') {
+    console.log("Monetization pending")
+    }
+    else if (monetization.state === 'started') {
+    console.log("Monetization started")
+    }
+    else if (!monetization.state) {
+    console.log("Sign up to Coil")
+    }
+  }
+
 
   useEffect(() => {
     window.addEventListener('load', () => {
@@ -20,6 +39,7 @@ function App() {
         document.querySelector("video").style.display = "block"
       } 
     })
+    Monetization()
   })
 
   const CreatorModalSubmitHandler = data => {

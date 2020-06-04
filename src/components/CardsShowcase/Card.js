@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 const dateFormatter = (date) => {
     const newDate = new Date(date.toString())
@@ -8,10 +8,6 @@ const dateFormatter = (date) => {
 }
 
 const Card = (props) => {
-
-    const [uid, setUid] = useState(null)
-
-    console.log(props)
     
     return (
         <div className="card" style={styles.cardStyle}>
