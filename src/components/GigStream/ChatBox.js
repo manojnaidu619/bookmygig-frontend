@@ -3,18 +3,21 @@ import io from 'socket.io-client'
 const socket = io.connect('http://localhost:5000')
 
 const ChatBox = (props) => {
-
+ 
     const userName = localStorage.getItem('userName')
 
     const addLi = (data) => {
         const ul = document.querySelector('#chat-ul-div')
-        var li = document.createElement('li');
-        li.appendChild(document.createTextNode(data))
-        ul.appendChild(li)
+        const lastUlData = ul.lastChild 
+        if ( lastUlData === null || lastUlData.textContent !== data) {
+            var li = document.createElement('li');
+            li.appendChild(document.createTextNode(data))
+            ul.appendChild(li)
 
-        const chatWindow = document.querySelector('.chat-text-div'); 
-        const xH = chatWindow.scrollHeight; 
-        chatWindow.scrollTo(0, xH);
+            const chatWindow = document.querySelector('.chat-text-div'); 
+            const xH = chatWindow.scrollHeight; 
+            chatWindow.scrollTo(0, xH);
+        }
     }
 
     const addText = (e) => {

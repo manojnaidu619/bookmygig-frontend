@@ -26,7 +26,9 @@ const Gig = (props) => {
         window.addEventListener('load', () => {
             window["loadVideo"](gigId)
             vidText()
-            axios.get(getUrl).then(response => setGigData(response.data))
+            axios.get(getUrl).then(response => {
+                setGigData(response.data)
+            })
         })
     }, [])
 
@@ -43,7 +45,7 @@ const Gig = (props) => {
                     <br/>
                     <h1>{gigData.gig_title}</h1>
                     <h6>By <strong>{gigData.name}</strong></h6>
-                </div>
+            </div>
                 <ChatBox room={gigId} />
             </Fragment>
         
