@@ -5,8 +5,8 @@ const CardModal = () => {
     const [userName, setUserName] = useState(null)
 
     const setName = () => {
-        let localName = localStorage.getItem("userName").toString()
-        if (localName.length > 2) {
+        let localName = localStorage.getItem("userName")
+        if (localName === null || localName.length > 2) {
             localStorage.setItem('userName', userName)
         } else {
             localStorage.setItem('userName', 'User')
