@@ -2,12 +2,14 @@ import React, { useEffect, useState, Fragment } from 'react'
 import axios from 'axios'
 import ChatBox from './ChatBox'
 
+
 const Gig = (props) => {
     const [gigData, setGigData] = useState()
-    let data = null
-
     const gigId = parseInt(props.match.params.id)
     const getUrl = `http://localhost:5000/get-gig/${gigId}`
+    let data = null
+
+    console.log(gigData)
 
     const vidText = () => {
         var streamDiv = document.querySelector("#videoElement")
@@ -19,7 +21,7 @@ const Gig = (props) => {
     }
 
     if (gigData) {
-        document.querySelector('meta[name="monetization"]').setAttribute("content", '$coil.xrptipbot.com/this_may_work');
+        document.querySelector('meta[name="monetization"]').setAttribute("content", gigData.paymentPointer || '$coil.xrptipbot.com/this_goes_to_creator');
     }
 
     useEffect(() => {
@@ -37,7 +39,7 @@ const Gig = (props) => {
             <Fragment>
                 <div style={{color: "#fff"}}>
                     <div className="alert alert-success" role="alert" style={{textAlign: 'center'}}>
-                        Welcome <strong>{localStorage.getItem("userName")}</strong>
+                        Welcome <strong>{localStorage.getItem("userName")}</strong>, checking for monetization...
                         <button type="button" className="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

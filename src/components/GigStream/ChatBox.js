@@ -1,10 +1,13 @@
 import React from 'react'
 import io from 'socket.io-client'
+import { useMonetizationState } from 'react-web-monetization'
 const socket = io.connect('http://localhost:5000')
 
 const ChatBox = (props) => {
  
     const userName = localStorage.getItem('userName')
+
+    const monetization = useMonetizationState()
 
     const addLi = (data, typed) => {
         const ul = document.querySelector('#chat-ul-div')
@@ -30,11 +33,36 @@ const ChatBox = (props) => {
         textBox.value = ""
     }
 
+    const Monetization = () => {
+        const btn = document.querySelector('#chat-box-send-btn')
+        if (window.location.pathname.startsWith('/gig/')) {
+            if (monetization.state === 'stopped') {
+                console.log("Monetization Stopped")
+                  if (window.location.pathname.startsWith('/gig/')) {
+                      if(btn) btn.disabled = true
+                  } 
+              }
+              else if (monetization.state === 'pending') {
+              console.log("Monetization pending")
+              }
+              else if (monetization.state === 'started') {
+                  console.log("Monetization started")
+                  if (window.location.pathname.startsWith('/gig/')) {
+                      if(btn) btn.disabled = false
+                  } 
+              }
+              else if (!monetization.state) {
+              console.log("Sign up to Coil")
+              }
+        }
+    }
+
     socket.emit('chat-join', { room: props.room, msg: userName })
     socket.on('add-chat-join', (data) => addLi(data.toUpperCase() + ' Joined now', false))  
     socket.on('add-chat-text', ({msg, user}) => addLi(`${user.toUpperCase()} says - ${msg}`, true))
     socket.on("chat-disconnected", (data) => addLi(userName + data))
 
+    Monetization()
 
     return (
         <div className="chat-div" style={styles.chatDiv}>
@@ -45,7 +73,7 @@ const ChatBox = (props) => {
                 <div className="input-group mb-3">
                     <input type="text" id="chat-text" className="form-control" placeholder="type something"/>
                     <div className="input-group-append">
-                        <button className="btn btn-primary" type="button" onClick={addText}>Send</button>
+                        <button className="btn btn-primary" id="chat-box-send-btn" type="button" onClick={addText}>Send</button>
                     </div>
                 </div>
             </div>
